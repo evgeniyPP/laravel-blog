@@ -13,16 +13,16 @@ class PostController extends Controller
 
     public function single($id)
     {
-        return view('single', ['id' => $id]);
+        return view('post.single', ['id' => $id]);
     }
 
     public function add()
     {
-        return view('add');
+        return view('post.add');
     }
 
     public function edit($id)
     {
-        return view('edit', ['id' => $id]);
+        return view('post.edit', ['id' => $id]);
     }
 }

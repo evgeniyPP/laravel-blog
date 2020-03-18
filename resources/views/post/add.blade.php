@@ -4,7 +4,7 @@
     <div class="flex-center position-ref full-height">
         <div class="content">
             <div class="title m-b-md">
-                List of all posts will be here
+                There will be form for adding new posts
             </div>
         </div>
     </div>

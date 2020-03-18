@@ -19,7 +19,7 @@ Route::group(['prefix' => '/post'], function () {
     Route::get('/{id}/edit', 'PostController@edit')->where('id', '[0-9]+')->name('post.edit');
 });
 
-Route::group(['prefix' => ''], function () {
+Route::group([], function () {
     Route::get('/login', 'AuthController@login')->name('auth.login');
     Route::get('/signup', 'AuthController@signup')->name('auth.signup');
     Route::get('/logout', 'AuthController@logout')->name('auth.logout');
