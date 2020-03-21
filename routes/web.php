@@ -14,9 +14,11 @@
 Route::get('/', 'PostController@index')->name('index');
 
 Route::group(['prefix' => '/post'], function () {
-    Route::get('/{id}', 'PostController@single')->where('id', '[0-9]+')->name('post.single');
-    Route::get('/add', 'PostController@add')->name('post.add');
-    Route::get('/{id}/edit', 'PostController@edit')->where('id', '[0-9]+')->name('post.edit');
+    Route::get('/{id}', 'PostController@post')->where('id', '[0-9]+')->name('post.post');
+    Route::get('/add', 'PostController@add_get')->name('post.add_get');
+    Route::post('/add', 'PostController@add_post')->name('post.add_post');
+    Route::get('/{id}/edit', 'PostController@edit_get')->where('id', '[0-9]+')->name('post.edit_get');
+    Route::post('/{id}/edit', 'PostController@edit_post')->where('id', '[0-9]+')->name('post.edit_post');
 });
 
 Route::group([], function () {

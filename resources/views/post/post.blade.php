@@ -1,16 +1,17 @@
 @extends('_layouts.1column')
 
-@section('title', 'Добавить пост')
+@section('title', $post->title)
 
 @section('stylesheets')
     <link rel="stylesheet" href={{asset('storage/stylesheets/main.css?1')}} />
-    <link rel="stylesheet" href={{asset('storage/stylesheets/add-edit.css')}} />
 @endsection
 
 @section('center-column')
-    @include('post.add-layout', [
-        'method' => $form->method(),
-        'fields' => $form->fields()
+    @include('post.post-layout', [
+        'id' => $post->id,
+        'title' => $post->title,
+        'date' => $post->dt,
+        'content' => $post->content,
     ])
 @endsection
 
