@@ -4,18 +4,17 @@ namespace App\Forms;
 
 use Illuminate\Support\Facades\Config;
 
-class AuthForm extends Form
+class LoginForm extends Form
 {
-    public function __construct($errors)
+    public function __construct()
     {
-        $this->formName = 'auth';
+        $this->formName = 'login';
         $this->method = Config::get('constants.methods.post');
         $this->fields = [
             [
                 'name' => 'login',
                 'type' => 'text',
                 'placeholder' => 'Введите логин',
-                'errors' => $errors['login'] ?? null,
                 'label' => [
                     'value' => 'Логин',
                 ],
@@ -24,7 +23,6 @@ class AuthForm extends Form
                 'name' => 'password',
                 'type' => 'password',
                 'placeholder' => 'Введите пароль',
-                'errors' => $errors['password'] ?? null,
                 'label' => [
                     'value' => 'Пароль',
                 ],
@@ -33,8 +31,8 @@ class AuthForm extends Form
                 'name' => 'remember',
                 'type' => 'checkbox',
                 'label' => [
-                    'class' => 'remember',
-                    'value' => '<span></span>Запомнить',
+                    'class' => 'checkbox',
+                    'value' => '<span></span><div>Запомнить</div>',
                     'positionAfter' => true,
                 ],
             ],

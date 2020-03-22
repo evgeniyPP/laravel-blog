@@ -48,7 +48,7 @@ class PostController extends Controller
                 ->withInput($request->all());
         }
 
-        $data = $validator->getData();
+        $data = $request->all();
         DB::table('posts')->insert(
             ['title' => $data['title'], 'content' => $data['content']]
         );
@@ -83,7 +83,7 @@ class PostController extends Controller
                 ->withInput($request->all());
         }
 
-        $data = $validator->getData();
+        $data = $request->all();
         DB::table('posts')
             ->where('id', $id)
             ->update(

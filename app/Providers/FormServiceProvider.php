@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Forms\PostForm;
 use App\Forms\FormBuilder;
+use App\Forms\LoginForm;
+use App\Forms\SignUpForm;
 use Illuminate\Support\ServiceProvider;
 
 class FormServiceProvider extends ServiceProvider
@@ -20,10 +22,25 @@ class FormServiceProvider extends ServiceProvider
             $form = new PostForm($values);
             return new FormBuilder($form);
         });
+
+        $this->app->bind('LoginForm', function () {
+            $form = new LoginForm();
+            return new FormBuilder($form);
+        });
+
+        $this->app->bind('SignUpForm', function ($app, $values = []) {
+            $form = new SignUpForm($values);
+            return new FormBuilder($form);
+        });
     }
 
     public function provides()
     {
-        return [FormBuilder::class];
+        return [
+            PostForm::class,
+            LoginForm::class,
+            SignUpForm::class,
+            FormBuilder::class
+        ];
     }
 }

@@ -20,7 +20,7 @@
                         <a href={{ route('post.add_get') }} class="dropdown-toggle" data-toggle="dropdown">Добавить пост</a>
                     </li>
                     <li>
-                        <a href={{ route('auth.login') }} class="dropdown-toggle" data-toggle="dropdown">Войти</a>
+                        <a href={{ route('auth.login_get') }} class="dropdown-toggle" data-toggle="dropdown">Войти</a>
                     </li>
                     <li>
                         <a href={{ route('auth.logout') }} class="dropdown-toggle" data-toggle="dropdown">Выйти</a>

@@ -4,7 +4,7 @@
 
 @section('stylesheets')
     <link rel="stylesheet" href={{asset('storage/stylesheets/main.css?1')}} />
-    <link rel="stylesheet" href={{asset('storage/stylesheets/add-edit.css')}} />
+    <link rel="stylesheet" href={{asset('storage/stylesheets/forms.css')}} />
 @endsection
 
 @section('center-column')

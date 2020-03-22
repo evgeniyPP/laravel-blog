@@ -1,6 +1,6 @@
 @extends('_layouts.1column')
 
-@section('title', "Редактировать пост №{$id}")
+@section('title', 'Войти')
 
 @section('stylesheets')
     <link rel="stylesheet" href={{asset('storage/stylesheets/main.css?1')}} />
@@ -8,7 +8,7 @@
 @endsection
 
 @section('center-column')
-    @include('post.edit-layout', [
+    @include('auth.login-layout', [
         'method' => $form->method(),
         'fields' => $form->fields()
     ])
