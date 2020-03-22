@@ -7,14 +7,10 @@
 @endsection
 
 @section('center-column')
-    @include('post.post-layout', [
+    @include('_html.post.post', [
         'id' => $post->id,
         'title' => $post->title,
         'date' => $post->dt,
         'content' => $post->content,
     ])
-@endsection
-
-@section('scripts')
-    <script src={{ asset('storage/js/main.js') }}></script>
 @endsection

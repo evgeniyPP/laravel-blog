@@ -25,3 +25,7 @@
 @section('copyrights')
     @include('_partials.copyrights')
 @endsection
+
+@section('scripts')
+    <script src={{ asset('storage/js/main.js') }}></script>
+@endsection

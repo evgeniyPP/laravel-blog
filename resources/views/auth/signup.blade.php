@@ -8,12 +8,8 @@
 @endsection
 
 @section('center-column')
-    @include('auth.signup-layout', [
+    @include('_html.auth.signup', [
         'method' => $form->method(),
         'fields' => $form->fields()
     ])
-@endsection
-
-@section('scripts')
-    <script src={{ asset('storage/js/main.js') }}></script>
 @endsection

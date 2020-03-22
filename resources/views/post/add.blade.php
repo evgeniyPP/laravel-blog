@@ -8,12 +8,8 @@
 @endsection
 
 @section('center-column')
-    @include('post.add-layout', [
+    @include('_html.post.add', [
         'method' => $form->method(),
         'fields' => $form->fields()
     ])
-@endsection
-
-@section('scripts')
-    <script src={{ asset('storage/js/main.js') }}></script>
 @endsection

@@ -11,7 +11,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        return view('index.index', [
+        return view('index', [
             'posts' => DB::table('posts')->orderBy('id', 'desc')->get()
         ]);
     }

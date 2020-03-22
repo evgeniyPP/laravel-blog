@@ -8,7 +8,7 @@
 
 @section('center-column')
     @forelse ($posts as $post)
-        @include('index.single_post', [
+        @include('_html.single_post', [
             'id' => $post->id,
             'title' => $post->title,
             'date' => $post->dt,
@@ -21,7 +21,3 @@
 {{-- @section('right-column')
     @include('_partials.sidebar')
 @endsection --}}
-
-@section('scripts')
-    <script src={{ asset('storage/js/main.js') }}></script>
-@endsection
