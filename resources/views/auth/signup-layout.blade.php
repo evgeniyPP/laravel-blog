@@ -1,13 +1,7 @@
 <form method={{ $method }} class="auth-form">
     {{ csrf_field() }}
-    @if (isset($errors) && !empty($errors))
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    @endif
-    @foreach ($fields as $field)
+    @foreach ($fields as $name => $field)
+        {!! $errors->first($name, '<p class="help-block">:message</p>') !!}
         {!! $field !!}
     @endforeach
     <div class="form__btns">

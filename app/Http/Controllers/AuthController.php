@@ -36,7 +36,7 @@ class AuthController extends Controller
         } else {
             return redirect()
                 ->route('auth.login_get')
-                ->withErrors('Неверный логин или пароль');
+                ->withErrors(['login' => 'Неверный логин или пароль']);
         }
     }
 

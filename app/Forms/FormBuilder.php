@@ -48,9 +48,9 @@ class FormBuilder
             }
 
             if ($isLabel) {
-                $inputs[] = $this->label($label, $input);
+                $inputs[$field['name']] = $this->label($label, $input);
             } else {
-                $inputs[] = $input;
+                $inputs[$field['name']] = $input;
             }
         }
 
