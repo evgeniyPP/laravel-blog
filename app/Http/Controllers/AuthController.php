@@ -31,7 +31,7 @@ class AuthController extends Controller
 
         $data = $request->all();
 
-        if (Auth::attempt(['login' => $data['login'], 'password' => $data['password']], $data['remember'])) {
+        if (Auth::attempt(['login' => $data['login'], 'password' => $data['password']], $data['remember'] ?? null)) {
             return redirect()->intended(route('index'));
         } else {
             return redirect()
