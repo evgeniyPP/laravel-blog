@@ -9,11 +9,13 @@
                                 <span class="meta__date"><span class="glyphicon glyphicon-calendar"></span> &nbsp; {{ $date }}</span>
                             </div>
                         </div>
-                        <div class="col-xs-12  col-sm-4">
-                            <div class="meta__info">
-                                <a href={{ route('post.edit_get', $id) }}>Редактировать пост</a>
+                        @if (request()->user())
+                            <div class="col-xs-12  col-sm-4">
+                                <div class="meta__info">
+                                    <a href={{ route('post.edit_get', $id) }}>Редактировать пост</a>
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
             </div>

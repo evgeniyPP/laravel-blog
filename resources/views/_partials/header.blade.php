@@ -16,20 +16,25 @@
         <nav class="navbar navbar-default" role="navigation">
             <div class="collapse navbar-collapse" id="readable-navbar-collapse">
                 <ul class="navigation">
-                    <li>
-                        <a href={{ route('post.add_get') }} class="dropdown-toggle" data-toggle="dropdown">Добавить пост</a>
-                    </li>
-                    <li>
-                        <a href={{ route('auth.login_get') }} class="dropdown-toggle" data-toggle="dropdown">Войти</a>
-                    </li>
-                    <li>
-                        <a href={{ route('auth.logout') }} class="dropdown-toggle" data-toggle="dropdown">Выйти</a>
-                    </li>
+                    @if (request()->user())
+                        <li>
+                            <a href={{ route('post.add_get') }} class="dropdown-toggle" data-toggle="dropdown">Добавить пост</a>
+                        </li>
+                        <li>
+                            <a href={{ route('auth.logout') }} class="dropdown-toggle" data-toggle="dropdown">
+                                Выйти ({{request()->user()->login}})
+                            </a>
+                        </li>
+                    @else
+                        <li>
+                            <a href={{ route('auth.login_get') }} class="dropdown-toggle" data-toggle="dropdown">Войти</a>
+                        </li>
+                    @endif                    
                 </ul>
             </div>
         </nav>
-        <div class="hidden-xs hidden-sm">
+        {{-- <div class="hidden-xs hidden-sm">
             <a href="#" class="search__container  js--toggle-search-mode"> <span class="glyphicon  glyphicon-search"></span> </a>
-        </div>
+        </div> --}}
     </div>
 </header>
