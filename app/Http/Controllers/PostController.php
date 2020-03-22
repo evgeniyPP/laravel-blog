@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
@@ -12,14 +12,14 @@ class PostController extends Controller
     public function index()
     {
         return view('index', [
-            'posts' => DB::table('posts')->orderBy('id', 'desc')->get()
+            'posts' => Post::orderBy('id', 'desc')->get()
         ]);
     }
 
     public function post($id)
     {
         return view('post.post', [
-            'post' => DB::table('posts')->where('id', $id)->first()
+            'post' => Post::find($id)
         ]);
     }
 
@@ -49,9 +49,10 @@ class PostController extends Controller
         }
 
         $data = $request->all();
-        DB::table('posts')->insert(
-            ['title' => $data['title'], 'content' => $data['content']]
-        );
+        Post::create([
+            'title' => $data['title'],
+            'content' => $data['content']
+        ]);
 
         return redirect()->route('index');
     }
@@ -60,7 +61,7 @@ class PostController extends Controller
     {
         $oldInput = $request->old();
 
-        $post = DB::table('posts')->where('id', $id)->first();
+        $post = Post::find($id);
         $form = app()->make('PostForm', [
             'title' => $oldInput['title'] ?? $post->title,
             'content' => $oldInput['content'] ?? $post->content
@@ -84,11 +85,11 @@ class PostController extends Controller
         }
 
         $data = $request->all();
-        DB::table('posts')
-            ->where('id', $id)
-            ->update(
-                ['title' => $data['title'], 'content' => $data['content']]
-            );
+
+        Post::find($id)->fill([
+            'title' => $data['title'],
+            'content' => $data['content']
+        ])->save();
 
         return redirect()->route('post.post', $id);
     }

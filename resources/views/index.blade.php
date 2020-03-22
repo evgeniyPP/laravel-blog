@@ -11,7 +11,7 @@
         @include('_html.single_post', [
             'id' => $post->id,
             'title' => $post->title,
-            'date' => $post->dt,
+            'date' => $post->updated_at,
         ])
     @empty
         <h2>Постов нет</h2>

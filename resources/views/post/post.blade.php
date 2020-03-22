@@ -10,7 +10,7 @@
     @include('_html.post.post', [
         'id' => $post->id,
         'title' => $post->title,
-        'date' => $post->dt,
+        'date' => $post->updated_at,
         'content' => $post->content,
     ])
 @endsection

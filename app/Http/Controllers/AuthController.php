@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -67,14 +67,12 @@ class AuthController extends Controller
         }
 
         $data = $request->all();
-        DB::table('users')->insert(
-            [
-                'name' => $data['name'],
-                'surname' => $data['surname'],
-                'login' => $data['login'],
-                'password' => password_hash($data['password'], \PASSWORD_DEFAULT)
-            ]
-        );
+        User::create([
+            'name' => $data['name'],
+            'surname' => $data['surname'],
+            'login' => $data['login'],
+            'password' => password_hash($data['password'], \PASSWORD_DEFAULT)
+        ]);
 
         return redirect()->route('index');
     }
