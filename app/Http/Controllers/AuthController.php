@@ -21,7 +21,7 @@ class AuthController extends Controller
 
     public function login_post(Request $request)
     {
-        $validator = Validator::make($request->all(), Config::get('constants.loginValidation'));
+        $validator = Validator::make($request->all(), Config::get('validations.loginValidation'));
 
         if ($validator->fails()) {
             return redirect()
@@ -57,7 +57,7 @@ class AuthController extends Controller
 
     public function signup_post(Request $request)
     {
-        $validator = Validator::make($request->all(), Config::get('constants.signUpValidation'));
+        $validator = Validator::make($request->all(), Config::get('validations.signUpValidation'));
 
         if ($validator->fails()) {
             return redirect()

@@ -39,7 +39,7 @@ class PostController extends Controller
 
     public function add_post(Request $request)
     {
-        $validator = Validator::make($request->all(), Config::get('constants.addPostValidation'));
+        $validator = Validator::make($request->all(), Config::get('validations.addPostValidation'));
 
         if ($validator->fails()) {
             return redirect()
@@ -74,7 +74,7 @@ class PostController extends Controller
 
     public function edit_post(Request $request, $id)
     {
-        $validator = Validator::make($request->all(), Config::get('constants.editPostValidation'));
+        $validator = Validator::make($request->all(), Config::get('validations.editPostValidation'));
 
         if ($validator->fails()) {
             return redirect()
