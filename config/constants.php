@@ -22,7 +22,7 @@ return [
         'surname' => 'required|string|min:2|max:255',
         'login' => 'required|string|unique:users|min:4',
         'password' => 'required|string|min:4',
-        'confirm' => 'required|string|min:4',
+        'confirm' => 'required|string|same:password|min:4',
         'policy' => 'required'
     ]
 ];
