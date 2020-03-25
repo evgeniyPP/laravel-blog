@@ -31,8 +31,8 @@ class AddUserIdToPosts extends Migration
     public function down()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->dropColumn('user_id');
             $table->dropForeign(['user_id']);
+            $table->dropColumn('user_id');
         });
     }
 }
