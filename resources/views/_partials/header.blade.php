@@ -16,10 +16,12 @@
         <nav class="navbar navbar-default" role="navigation">
             <div class="collapse navbar-collapse" id="readable-navbar-collapse">
                 <ul class="navigation">
+                    @can ('add', \App\Post::class)
+                    <li>
+                        <a href={{ route('post.add_get') }} class="dropdown-toggle" data-toggle="dropdown">Добавить пост</a>
+                    </li>
+                    @endcan
                     @if (request()->user())
-                        <li>
-                            <a href={{ route('post.add_get') }} class="dropdown-toggle" data-toggle="dropdown">Добавить пост</a>
-                        </li>
                         <li>
                             <a href={{ route('auth.logout') }} class="dropdown-toggle" data-toggle="dropdown">
                                 Выйти ({{request()->user()->login}})

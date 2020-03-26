@@ -11,10 +11,6 @@
 |
  */
 
-use App\Post;
-use App\Tag;
-use App\User;
-
 Route::get('/', 'PostController@index')->name('index');
 
 Route::group(['prefix' => '/post'], function () {
@@ -24,21 +20,21 @@ Route::group(['prefix' => '/post'], function () {
 
     Route::get('/add', 'PostController@add_get')
         ->name('post.add_get')
-        ->middleware('auth');
+        ->middleware('can:add,App\Post');
 
     Route::post('/add', 'PostController@add_post')
         ->name('post.add_post')
-        ->middleware('auth');
+        ->middleware('can:add,App\Post');
 
     Route::get('/{id}/edit', 'PostController@edit_get')
         ->where('id', '[0-9]+')
         ->name('post.edit_get')
-        ->middleware('auth');
+        ->middleware('can:edit,App\Post');
 
     Route::post('/{id}/edit', 'PostController@edit_post')
         ->where('id', '[0-9]+')
         ->name('post.edit_post')
-        ->middleware('auth');
+        ->middleware('can:edit,App\Post');
 });
 
 Route::group([], function () {
@@ -75,9 +71,16 @@ Route::get('/test', function () {
     //     'name' => 'politics'
     // ]);
 
-    $tag = Tag::find(1);
-    $post = Post::find(2);
-    $post->tags()->sync($tag);
+    // $tag = Tag::find(1);
+    // $post = Post::find(2);
+    // $post->tags()->sync($tag);
+
+    // $role = User::find(2)->role->can_add_post;
+    // dump($role);
+
+    // if (Gate::denies('promote')) {
+    //     return 'NO';
+    // }
 
     return 'OK';
 });
