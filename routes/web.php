@@ -45,6 +45,9 @@ Route::group([], function () {
     Route::get('/logout', 'AuthController@logout')->name('auth.logout');
 });
 
+Route::get('/feedback', 'FeedbackController@get')->name('feedback_get');
+Route::post('/feedback', 'FeedbackController@post')->name('feedback_post');
+
 Route::get('/test', function () {
     /* 1-MANY */
     // User::create([

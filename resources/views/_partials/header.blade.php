@@ -21,6 +21,9 @@
                         <a href={{ route('post.add_get') }} class="dropdown-toggle" data-toggle="dropdown">Добавить пост</a>
                     </li>
                     @endcan
+                    <li>
+                        <a href={{ route('feedback_get') }} class="dropdown-toggle" data-toggle="dropdown">Обратная связь</a>
+                    </li>
                     @if (request()->user())
                         <li>
                             <a href={{ route('auth.logout') }} class="dropdown-toggle" data-toggle="dropdown">

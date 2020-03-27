@@ -20,5 +20,10 @@ return [
         'password' => 'required|string|min:4',
         'confirm' => 'required|string|same:password|min:4',
         'policy' => 'required'
+    ],
+    'feedbackValidation' => [
+        'name' => 'required|string|min:2|max:255',
+        'email' => 'required|email',
+        'message' => 'required|string|min:20'
     ]
 ];

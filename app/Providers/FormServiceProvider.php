@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Forms\FeedbackForm;
 use App\Forms\PostForm;
 use App\Forms\FormBuilder;
 use App\Forms\LoginForm;
@@ -30,6 +31,11 @@ class FormServiceProvider extends ServiceProvider
 
         $this->app->bind('SignUpForm', function ($app, $values = []) {
             $form = new SignUpForm($values);
+            return new FormBuilder($form);
+        });
+
+        $this->app->bind('FeedbackForm', function () {
+            $form = new FeedbackForm();
             return new FormBuilder($form);
         });
     }
