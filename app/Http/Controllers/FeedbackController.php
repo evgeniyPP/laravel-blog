@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\FeedbackMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
@@ -29,16 +30,8 @@ class FeedbackController extends Controller
                 ->withInput($request->all());
         }
 
-        $mailTemplate = view('mail.feedback', [
-            'data' => $request->all()
-        ])->render();
-
-        Mail::raw($mailTemplate, function ($message) {
-            $message->from('aysanru@gmail.com', 'Laravel');
-            $message->to('amenat12@mail.ru');
-            $message->setContentType('text/html');
-            $message->subject('Письмо: обратная связь');
-        });
+        Mail::to('amenat12@mail.ru')
+            ->send(new FeedbackMail($request->all()));
 
         return redirect()->route('feedback_success');
     }
