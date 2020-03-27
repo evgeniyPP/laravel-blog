@@ -8,7 +8,7 @@
 @endsection
 
 @section('center-column')
-    @include('_html.feedback', [
+    @include('_html.feedback.feedback', [
         'method' => $form->method(),
         'fields' => $form->fields()
     ])

@@ -47,6 +47,7 @@ Route::group([], function () {
 
 Route::get('/feedback', 'FeedbackController@get')->name('feedback_get');
 Route::post('/feedback', 'FeedbackController@post')->name('feedback_post');
+Route::get('/feedback/success', 'FeedbackController@success')->name('feedback_success');
 
 Route::get('/test', function () {
     /* 1-MANY */

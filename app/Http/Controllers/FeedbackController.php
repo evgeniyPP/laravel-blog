@@ -13,7 +13,7 @@ class FeedbackController extends Controller
     {
         $form = app()->make('FeedbackForm');
 
-        return view('feedback', [
+        return view('feedback.feedback', [
             'form' => $form
         ]);
     }
@@ -29,8 +29,22 @@ class FeedbackController extends Controller
                 ->withInput($request->all());
         }
 
-        // $data = $request->all();
+        $mailTemplate = view('mail.feedback', [
+            'data' => $request->all()
+        ])->render();
 
-        return redirect()->route('index');
+        Mail::raw($mailTemplate, function ($message) {
+            $message->from('aysanru@gmail.com', 'Laravel');
+            $message->to('amenat12@mail.ru');
+            $message->setContentType('text/html');
+            $message->subject('Письмо: обратная связь');
+        });
+
+        return redirect()->route('feedback_success');
+    }
+
+    public function success()
+    {
+        return view('feedback.success');
     }
 }
