@@ -12,6 +12,8 @@
  */
 
 Route::get('/', 'PostController@index')->name('index');
+Route::get('/not-approved', 'PostController@not_approved')
+    ->name('not-approved');
 
 Route::group(['prefix' => '/post'], function () {
     Route::get('/{id}', 'PostController@post')
@@ -35,6 +37,11 @@ Route::group(['prefix' => '/post'], function () {
         ->where('id', '[0-9]+')
         ->name('post.edit_post')
         ->middleware('can:edit,App\Post');
+
+    Route::get('/{id}/approve', 'PostController@approve')
+        ->where('id', '[0-9]+')
+        ->name('post.approve')
+        ->middleware('can:approve,App\Post');
 });
 
 Route::group([], function () {

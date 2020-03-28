@@ -10,12 +10,21 @@
                             </div>
                         </div>
                         @can ('edit', \App\Post::class)
-                            <div class="col-xs-12  col-sm-4">
+                            <div class="col-xs-12  col-sm-2">
                                 <div class="meta__info">
-                                    <a href={{ route('post.edit_get', $id) }}>Редактировать пост</a>
+                                    <a href={{ route('post.edit_get', $id) }}>Редактировать</a>
                                 </div>
                             </div>
                         @endcan
+                        @if ($is_approved == 0)
+                            @can ('approve', \App\Post::class)
+                                <div class="col-xs-12  col-sm-2">
+                                    <div class="meta__info">
+                                        <a href={{ route('post.approve', $id) }}>Одобрить</a>
+                                    </div>
+                                </div>
+                            @endcan
+                        @endif
                     </div>
                 </div>
             </div>
@@ -29,6 +38,9 @@
                 <h2>
                     {{ $title }}
                 </h2>
+                @if ($is_approved == 0)
+                    <p class="warning">Статья не одобрена администрацией!</p>
+                @endif
                 {!!nl2br($content)!!}
             </div>
 

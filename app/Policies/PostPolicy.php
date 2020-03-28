@@ -42,4 +42,16 @@ class PostPolicy
     {
         return $user->role->can_delete_post == 1;
     }
+
+    /**
+     * Determine whether the user can approve posts.
+     *
+     * @param  \App\User  $user
+     * @param  \App\User  $model
+     * @return bool
+     */
+    public function approve(User $user)
+    {
+        return $user->role->can_approve_posts == 1;
+    }
 }

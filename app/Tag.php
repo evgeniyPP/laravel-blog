@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
-    protected $guarded = ['id'];
+    protected $fillable = ['name'];
     public $timestamps = false;
 
     public function posts()

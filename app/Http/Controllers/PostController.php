@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Validator;
 
@@ -12,7 +13,7 @@ class PostController extends Controller
     public function index()
     {
         return view('index', [
-            'posts' => Post::orderBy('id', 'desc')->get()
+            'posts' => Post::orderBy('id', 'desc')->where('is_approved', 1)->get()
         ]);
     }
 
@@ -51,7 +52,8 @@ class PostController extends Controller
         $data = $request->all();
         Post::create([
             'title' => $data['title'],
-            'content' => $data['content']
+            'content' => $data['content'],
+            'user_id' => Auth::user()->id
         ]);
 
         return redirect()->route('index');
@@ -90,6 +92,22 @@ class PostController extends Controller
             'title' => $data['title'],
             'content' => $data['content']
         ])->save();
+
+        return redirect()->route('post.post', $id);
+    }
+
+    public function not_approved()
+    {
+        return view('post.not-approved', [
+            'posts' => Post::orderBy('id', 'desc')->where('is_approved', 0)->get()
+        ]);
+    }
+
+    public function approve($id)
+    {
+        $post = Post::find($id);
+        $post->is_approved = 1;
+        $post->save();
 
         return redirect()->route('post.post', $id);
     }

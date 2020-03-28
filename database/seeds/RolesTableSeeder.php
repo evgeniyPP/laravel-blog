@@ -14,10 +14,7 @@ class RolesTableSeeder extends Seeder
     {
         Role::create([
             'role' => 'Автор',
-            'can_add_post' => 1,
-            'can_edit_post' => 0,
-            'can_delete_post' => 0,
-            'can_promote_users' => 0
+            'can_add_post' => 1
         ]);
 
         Role::create([
@@ -25,7 +22,7 @@ class RolesTableSeeder extends Seeder
             'can_add_post' => 1,
             'can_edit_post' => 1,
             'can_delete_post' => 1,
-            'can_promote_users' => 0
+            'can_approve_posts' => 1
         ]);
 
         Role::create([
@@ -33,6 +30,7 @@ class RolesTableSeeder extends Seeder
             'can_add_post' => 1,
             'can_edit_post' => 1,
             'can_delete_post' => 1,
+            'can_approve_posts' => 1,
             'can_promote_users' => 1
         ]);
     }
