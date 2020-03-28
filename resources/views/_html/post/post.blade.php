@@ -4,7 +4,7 @@
             <div class="col-xs-12  col-sm-10  col-sm-offset-1  col-md-8  col-md-offset-2">
                 <div class="meta__container--without-image">
                     <div class="row">
-                        <div class="col-xs-12  col-sm-8">
+                        <div class="col-xs-12  col-sm-6">
                             <div class="meta__info">
                                 <span class="meta__date"><span class="glyphicon glyphicon-calendar"></span> &nbsp; {{ $date }}</span>
                             </div>
@@ -13,6 +13,13 @@
                             <div class="col-xs-12  col-sm-2">
                                 <div class="meta__info">
                                     <a href={{ route('post.edit_get', $id) }}>Редактировать</a>
+                                </div>
+                            </div>
+                        @endcan
+                        @can ('delete', \App\Post::class)
+                            <div class="col-xs-12  col-sm-2">
+                                <div class="meta__info">
+                                    <a href={{ route('post.delete', $id) }}>Удалить</a>
                                 </div>
                             </div>
                         @endcan
@@ -47,13 +54,13 @@
                 {!!nl2br($content)!!}
             </div>
 
-            <div class="row">
-                {{-- <div class="col-xs-12  col-sm-6">
+            {{-- <div class="row">
+                <div class="col-xs-12  col-sm-6">
                     <div class="post-comments">
                         <a class="btn  btn-primary" href="single-post-without-image.html">Комментарии (3)</a>
                     </div>
-                </div> --}}
-                {{-- <div class="col-xs-12  col-sm-6"> --}}
+                </div>
+                <div class="col-xs-12  col-sm-6">
                 <div class="col-xs-12">
                     <div class="social-icons">
                         <a href="#" class="social-icons__container"> <span class="zocial-facebook"></span> </a>
@@ -61,7 +68,7 @@
                         <a href="#" class="social-icons__container"> <span class="zocial-email"></span> </a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             {{-- <div class="row">
                 <div class="col-xs-12 col-sm-12">
                     <div class="tags">

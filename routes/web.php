@@ -42,6 +42,11 @@ Route::group(['prefix' => '/post'], function () {
         ->where('id', '[0-9]+')
         ->name('post.approve')
         ->middleware('can:approve,App\Post');
+
+    Route::get('/{id}/delete', 'PostController@delete')
+        ->where('id', '[0-9]+')
+        ->name('post.delete')
+        ->middleware('can:delete,App\Post');
 });
 
 Route::group([], function () {
