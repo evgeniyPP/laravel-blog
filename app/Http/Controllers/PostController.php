@@ -52,10 +52,6 @@ class PostController extends Controller
                 ->withInput($request->all());
         }
 
-        $image = $request->file('image');
-        $extension = $image->getClientOriginalExtension();
-        Storage::disk('images')->put($image->getFilename() . '.' . $extension,  File::get($image));
-
         $data = $request->all();
         $post = Post::create([
             'title' => $data['title'],
@@ -63,14 +59,21 @@ class PostController extends Controller
             'user_id' => Auth::user()->id
         ]);
 
-        Image::create([
-            'mime' => $image->getClientMimeType(),
-            'original_filename' => $image->getClientOriginalName(),
-            'filename' => $image->getFilename() . '.' . $extension,
-            'post_id' => $post->id
-        ]);
+        $image = $request->file('image');
 
-        return redirect()->route('index');
+        if ($image) {
+            $extension = $image->getClientOriginalExtension();
+            Storage::disk('images')->put($image->getFilename() . '.' . $extension,  File::get($image));
+
+            Image::create([
+                'mime' => $image->getClientMimeType(),
+                'original_filename' => $image->getClientOriginalName(),
+                'filename' => $image->getFilename() . '.' . $extension,
+                'post_id' => $post->id
+            ]);
+        }
+
+        return redirect()->route('post.post', $post->id);
     }
 
     public function edit_get(Request $request, $id)
@@ -102,10 +105,29 @@ class PostController extends Controller
 
         $data = $request->all();
 
-        Post::find($id)->fill([
+        $post = Post::find($id)->fill([
             'title' => $data['title'],
             'content' => $data['content']
-        ])->save();
+        ]);
+        $post->save();
+
+        $image = $request->file('image');
+
+        if ($image) {
+            $extension = $image->getClientOriginalExtension();
+            Storage::disk('images')->put($image->getFilename() . '.' . $extension,  File::get($image));
+
+            if ($post->image) {
+                $post->image->delete();
+            }
+
+            Image::create([
+                'mime' => $image->getClientMimeType(),
+                'original_filename' => $image->getClientOriginalName(),
+                'filename' => $image->getFilename() . '.' . $extension,
+                'post_id' => $id
+            ]);
+        }
 
         return redirect()->route('post.post', $id);
     }

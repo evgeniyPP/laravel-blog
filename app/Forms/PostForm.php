@@ -34,6 +34,7 @@ class PostForm extends Form
             [
                 'name' => 'image',
                 'type' => 'file',
+                'accept' => ".jpg, .jpeg, .png",
                 'label' => [
                     'value' => 'Изображение',
                 ],
