@@ -22,6 +22,7 @@
         'title' => $post->title,
         'date' => $post->updated_at,
         'content' => $post->content,
+        'image' => $post->image ? url('/storage/images/temp/' . $post->image->filename) : null,
         'is_approved' => $post->is_approved
     ])
 @endsection

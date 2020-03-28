@@ -41,6 +41,9 @@
                 @if ($is_approved == 0)
                     <p class="warning">Статья не одобрена администрацией!</p>
                 @endif
+                @if ($image)
+                    <img class="img-responsive" src="{{ $image }}" alt="image">
+                @endif
                 {!!nl2br($content)!!}
             </div>
 

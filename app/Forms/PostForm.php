@@ -31,6 +31,13 @@ class PostForm extends Form
                     'value' => 'Текст поста',
                 ],
             ],
+            [
+                'name' => 'image',
+                'type' => 'file',
+                'label' => [
+                    'value' => 'Изображение',
+                ],
+            ],
         ];
     }
 }

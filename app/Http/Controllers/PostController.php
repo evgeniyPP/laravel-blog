@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Image;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
@@ -49,11 +52,22 @@ class PostController extends Controller
                 ->withInput($request->all());
         }
 
+        $image = $request->file('image');
+        $extension = $image->getClientOriginalExtension();
+        Storage::disk('images')->put($image->getFilename() . '.' . $extension,  File::get($image));
+
         $data = $request->all();
-        Post::create([
+        $post = Post::create([
             'title' => $data['title'],
             'content' => $data['content'],
             'user_id' => Auth::user()->id
+        ]);
+
+        Image::create([
+            'mime' => $image->getClientMimeType(),
+            'original_filename' => $image->getClientOriginalName(),
+            'filename' => $image->getFilename() . '.' . $extension,
+            'post_id' => $post->id
         ]);
 
         return redirect()->route('index');
