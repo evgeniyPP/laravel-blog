@@ -23,7 +23,7 @@ class PostController extends Controller
     public function post($id)
     {
         return view('post.post', [
-            'post' => Post::find($id)
+            'post' => Post::findOrFail($id)
         ]);
     }
 
@@ -80,7 +80,7 @@ class PostController extends Controller
     {
         $oldInput = $request->old();
 
-        $post = Post::find($id);
+        $post = Post::findOrFail($id);
         $form = app()->make('PostForm', [
             'title' => $oldInput['title'] ?? $post->title,
             'content' => $oldInput['content'] ?? $post->content
@@ -105,7 +105,7 @@ class PostController extends Controller
 
         $data = $request->all();
 
-        $post = Post::find($id)->fill([
+        $post = Post::findOrFail($id)->fill([
             'title' => $data['title'],
             'content' => $data['content']
         ]);
@@ -141,7 +141,7 @@ class PostController extends Controller
 
     public function approve($id)
     {
-        $post = Post::find($id);
+        $post = Post::findOrFail($id);
         $post->is_approved = 1;
         $post->save();
 
@@ -150,7 +150,7 @@ class PostController extends Controller
 
     public function delete($id)
     {
-        Post::find($id)->delete();
+        Post::findOrFail($id)->delete();
         return redirect()->route('index');
     }
 }
